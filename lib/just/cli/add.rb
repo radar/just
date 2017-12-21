@@ -39,7 +39,7 @@ module Just
       end
 
       def create_just_directory
-        FileUtils.mkdir_p("~/.just")
+        FileUtils.mkdir_p(Just.directory)
       end
 
       def url

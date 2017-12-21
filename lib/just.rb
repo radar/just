@@ -7,7 +7,7 @@ module Just
   end
 
   def self.directory
-    File.join(ENV['HOME'], ".just")
+    File.expand_path(File.join(ENV['HOME'], ".just"))
   end
 
   def self.path(path)
