@@ -2,7 +2,7 @@ require 'rugged'
 require 'ruby-progressbar'
 
 module Just
-  class CLI
+  module CLI
     class Add
       attr_reader :username_and_repo
 
