@@ -1,0 +1,3 @@
+[submodule "spec/repos/radar/dot-files"]
+	path = spec/repos/radar/dot-files
+	url = git@github.com:radar/dot-files
