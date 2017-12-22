@@ -1,10 +1,23 @@
 require 'git'
 require 'dry/transaction'
 
+# rubocop:disable Layout/EmptyLinesAroundArguments
 module Just
   module CLI
     class Add
       include Dry::Transaction
+
+      ERRORS = {
+        destination_already_exists: lambda do |username_and_repo, destination|
+          <<~DOC
+            Destination already exists and is not an empty directory:
+              * #{destination}
+
+            It's likely that you've already added #{username_and_repo} using `just add`.
+            Maybe you didn't remember doing this?
+          DOC
+        end
+      }.freeze
 
       step :ensure_just_directory_exists
       step :ensure_destination_empty
@@ -20,7 +33,7 @@ module Just
         return Success(username_and_repo) unless Dir.exist?(destination)
         return Success(username_and_repo) if Dir.empty?(destination)
 
-        destination_already_exists(username_and_repo, destination)
+        Failure(ERRORS[:destination_already_exists].(username_and_repo, destination))
       end
 
       def clone_repository(username_and_repo)
@@ -29,18 +42,7 @@ module Just
 
         Success(username_and_repo)
       end
-
-      private
-
-      def destination_already_exists(username_and_repo, destination)
-        Failure <<~DOC
-          Destination already exists and is not an empty directory:
-            * #{destination}
-
-          It's likely that you've already added #{username_and_repo} using `just add`.
-          Maybe you didn't remember doing this?
-        DOC
-      end
     end
   end
 end
+# rubocop:enable Layout/EmptyLinesAroundArguments

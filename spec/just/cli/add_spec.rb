@@ -24,9 +24,10 @@ RSpec.describe Just::CLI::Add do
       end
 
       it "fails + returns an error" do
+        error = described_class::ERRORS[:destination_already_exists]
         result = run_command
         expect(result).to be_failure
-        expect(result).to eq(subject.destination_already_exists(repo, Just.path(repo)))
+        expect(result.value).to eq(error.(repo, Just.path(repo)))
       end
     end
   end
