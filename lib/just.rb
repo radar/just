@@ -22,4 +22,8 @@ module Just
   def self.git_url
     "https://github.com"
   end
+
+  def self.git(*paths)
+    File.join(git_url, *paths)
+  end
 end
