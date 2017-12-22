@@ -28,3 +28,4 @@ Style/FrozenStringLiteralComment:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+    - 'just.gemspec'

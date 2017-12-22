@@ -27,19 +27,19 @@ module Just
         destination = Just.path(username_and_repo)
         Git.clone(Just.git(username_and_repo), destination)
 
-
         Success(username_and_repo)
       end
 
+      private
+
       def destination_already_exists(username_and_repo, destination)
-        Failure(<<~DOC
+        Failure <<~DOC
           Destination already exists and is not an empty directory:
-            * (#{destination})
+            * #{destination}
 
           It's likely that you've already added #{username_and_repo} using `just add`.
           Maybe you didn't remember doing this?
         DOC
-        )
       end
     end
   end
