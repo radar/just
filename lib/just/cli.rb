@@ -2,7 +2,6 @@ require 'main'
 
 Main {
   mode 'add' do
-    name 'just add'
     argument('repo') {
       required
       synopsis 'repo'
