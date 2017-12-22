@@ -49,10 +49,19 @@ It's just that simple. Just will do the rest!
     def run()
       repo = params['repo'].value
       aliases = params['aliases'].values
-      Just::CLI::Use.new.call(
+      result = Just::CLI::Use.new.call(
         username_and_repo: repo,
         aliases: aliases
       )
+
+      if result.failure?
+        errors = result.value.map(&:value)
+        Just::CLI.error "The following files were not found:"
+        errors.each do |file|
+          Just::CLI.error "  * #{file}"
+        end
+        return
+      end
 
       Just::CLI.success "Now using the following aliases from #{repo}:"
       aliases.each do |file|
