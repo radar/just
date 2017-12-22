@@ -11,6 +11,11 @@ module Just
       step :ensure_destination_empty
       step :clone_repository
 
+      def ensure_just_directory_exists(username_and_repo)
+        FileUtils.mkdir_p(Just.directory)
+        Success(username_and_repo)
+      end
+
       def ensure_destination_empty(username_and_repo)
         destination = Just.path(username_and_repo)
         if File.exist?(destination) && !Dir.empty?(destination)
@@ -20,10 +25,6 @@ module Just
         end
       end
 
-      def ensure_just_directory_exists(username_and_repo)
-        FileUtils.mkdir_p(Just.directory)
-        Success(username_and_repo)
-      end
 
       def clone_repository(username_and_repo)
         progressbar = build_progress_bar(username_and_repo)
