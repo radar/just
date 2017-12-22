@@ -82,6 +82,39 @@ Main do
     # rubocop:enable Metrics/MethodLength
   end
 
+  mode 'list' do
+    argument('repo') do
+      optional
+    end
+
+    def run
+      if params['repo'].given?
+        repo = params['repo'].value
+        list_files(Just::CLI::ListFiles.new.call(repo))
+      else
+        list_repositories(Just::CLI::ListRepos.new.call(nil))
+      end
+    end
+
+    private
+
+    def list_files(result)
+      if result.success?
+        repo = result.value[:repo]
+        files = result.value[:files]
+
+        Just::CLI.success "#{repo} has the following files to pick from:"
+        files.each do |file|
+          puts "* #{file}"
+        end
+
+        Just::CLI.success "You can choose to use one of these files by running this command:"
+        puts ""
+        Just::CLI.success "just use #{repo} #{files.sample}"
+      end
+    end
+  end
+
   mode 'reset' do
     def run
       reset

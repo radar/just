@@ -1,3 +1,5 @@
+require "pathname"
+
 require "just/version"
 require "just/cli"
 
@@ -7,7 +9,7 @@ module Just
   end
 
   def self.directory
-    File.expand_path(File.join(ENV['HOME'], ".just"))
+    Pathname.new(File.expand_path(File.join(ENV['HOME'], ".just")))
   end
 
   def self.path(*paths)

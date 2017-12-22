@@ -1,6 +1,8 @@
 require "rainbow"
 
 require "just/cli/add"
+require "just/cli/list_files"
+require "just/cli/list_repos"
 require "just/cli/use"
 require "just/cli/reset"
 
