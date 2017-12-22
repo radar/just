@@ -14,7 +14,7 @@ RSpec.describe Just::CLI::Use do
       let(:run_command) do
         subject.call(
           username_and_repo: username_and_repo,
-          files: ["ryan-aliases"]
+          aliases: ["ryan-aliases"]
         )
       end
 
@@ -34,7 +34,7 @@ RSpec.describe Just::CLI::Use do
       let(:run_command) do
         subject.call(
           username_and_repo: username_and_repo,
-          files: [
+          aliases: [
             "ryan-aliases",
             "gitaliases"
           ]
@@ -62,7 +62,7 @@ RSpec.describe Just::CLI::Use do
       let(:run_command) do
         subject.call(
           username_and_repo: username_and_repo,
-          files: [
+          aliases: [
             "ryan-aliases",
             "oogabooga"
           ]
