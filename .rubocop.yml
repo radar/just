@@ -1,7 +1,7 @@
 AllCops:
   TargetRubyVersion: 2.4.2
   Exclude:
-    - spec/repos
+    - spec/repos/**/*
 
 Layout/IndentArray:
   EnforcedStyle: consistent
