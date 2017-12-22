@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Ryan Bigg"]
   spec.email         = ["git@ryanbigg.com"]
 
-  spec.summary       = %q{I'm just visiting thanks}
-  spec.description   = %q{I'm just visiting thanks}
+  spec.summary       = %q{For when you want your aliases but you're using someone else's computer.}
+  spec.description   = %q{For when you want your aliases but you're using someone else's computer.}
   spec.homepage      = "https://github.com/radar/just"
 
   spec.metadata["allowed_push_host"] = "https://rubygems.org"
