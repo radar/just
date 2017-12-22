@@ -1,5 +1,4 @@
- require 'main'
- require_relative 'cli/add'
+require 'main'
 
 Main {
   mode 'add' do
