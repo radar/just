@@ -9,8 +9,13 @@ Main {
     }
 
     def run()
-      Just::CLI::Add.new(params['username'].value).run
-      puts "Added #{username_and_repo} successfully."
+      repo = params['repo'].value
+      result = Just::CLI::Add.new.call(repo)
+      if result.success?
+        puts "Added #{repo} successfully."
+      else
+        puts result.value
+      end
     end
   end
 
@@ -28,9 +33,9 @@ Main {
     }
 
     def run()
-      Just::CLI::Use.new.run(
-        params['repo'].value,
-        params['aliases'].values
+      Just::CLI::Use.new.call(
+        username_and_repo: params['repo'].value,
+        aliases: params['aliases'].values
       )
     end
   end
