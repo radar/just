@@ -70,13 +70,27 @@ It's just that simple. Just will do the rest!
     end
   end
 
+  mode 'reset' do
+    def run()
+      reset
+    end
+  end
+
   mode 'me' do
     def run()
-      Just::CLI::Reset.new.call(nil)
-      Just::CLI.success "Just you!"
-      Just::CLI.success "Reloading your shell to reset aliases"
-
-      exec ENV['SHELL']
+      reset
     end
+  end
+
+  def reset
+    Just::CLI::Reset.new.call(nil)
+    Just::CLI.success "Just you!"
+    Just::CLI.success "Reloading your shell to reset aliases"
+
+    exec ENV['SHELL']
+  end
+
+  def run
+    help!
   end
 }
