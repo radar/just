@@ -8,6 +8,9 @@ To setup Just, you just need to add this line to your ~/.bash_profile or ~/.zshr
 
 . ~/.just/aliases
 
+You should add this _before_ any of the host computer's aliases.
+Just so that that computer's aliases take precedence!
+
 It's just that simple. Just will do the rest!
       DOC
 
