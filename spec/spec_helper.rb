@@ -15,6 +15,7 @@ end
 RSpec.configure do |config|
   config.before do
     FileUtils.rm_rf(Just.directory)
+    FileUtils.mkdir_p(Just.directory)
   end
 
   config.around { |example| ClimateControl.modify(HOME: Just.test_directory) { example.run } }
