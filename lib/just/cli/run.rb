@@ -67,6 +67,8 @@ It's just that simple. Just will do the rest!
       aliases.each do |file|
         Just::CLI.success "  * #{file}"
       end
+
+      reload_shell!
     end
   end
 
@@ -85,8 +87,13 @@ It's just that simple. Just will do the rest!
   def reset
     Just::CLI::Reset.new.call(nil)
     Just::CLI.success "Just you!"
-    Just::CLI.success "Reloading your shell to reset aliases"
 
+    reload_shell!
+  end
+
+  def reload_shell!
+    puts ""
+    Just::CLI.success "Reloading your shell to reset aliases..."
     exec ENV['SHELL']
   end
 
