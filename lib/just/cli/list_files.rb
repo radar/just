@@ -24,7 +24,7 @@ module Just
 
       def list(repo)
         files = (Dir.entries(path(repo))).reject { |f| /\A\./.match(f) }
-        Success(repo: repo, files: files)
+        Success(files)
       end
     end
   end

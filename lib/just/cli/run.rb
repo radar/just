@@ -99,19 +99,26 @@ Main do
     private
 
     def list_files(result)
-      if result.success?
-        repo = result.value[:repo]
-        files = result.value[:files]
+      repo = params['repo'].value
 
-        Just::CLI.success "#{repo} has the following files to pick from:"
-        files.each do |file|
-          puts "* #{file}"
-        end
-
-        Just::CLI.success "You can choose to use one of these files by running this command:"
-        puts ""
-        Just::CLI.success "just use #{repo} #{files.sample}"
+      if result.failure?
+        Just::CLI.error "#{repo} does not exist. Have you run `just add #{repo}` to add it yet?"
+        return
       end
+
+      files = result.value
+
+      Just::CLI.success "#{repo} has the following files to pick from:"
+      puts
+
+      files.each do |file|
+        puts "* #{file}"
+      end
+
+      puts
+      Just::CLI.success "You can choose to use one of these files by running this command:"
+      puts
+      Just::CLI.success "just use #{repo} #{files.sample}"
     end
   end
 

@@ -19,7 +19,7 @@ RSpec.describe Just::CLI::ListFiles do
 
     it "lists the files" do
       result = run_command
-      expect(result.value).to eq(repo: repo, files: ["gitaliases", "ryan-aliases"])
+      expect(result.value).to eq(["gitaliases", "ryan-aliases"])
     end
   end
 
