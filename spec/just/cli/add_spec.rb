@@ -2,7 +2,8 @@ require 'spec_helper'
 
 RSpec.describe Just::CLI::Add do
   context "run" do
-    let(:run_command) { Just::CLI::Add.new.call("radar/dot-files") }
+    let(:repo) { "radar/dot-files" }
+    let(:run_command) { subject.call(repo) }
     context "when the directory does not already exist" do
       it "creates the ~/.just directory" do
         run_command
@@ -25,7 +26,7 @@ RSpec.describe Just::CLI::Add do
       it "fails + returns an error" do
         result = run_command
         expect(result).to be_failure
-        expect(result.value).to eq("Destination already exists")
+        expect(result).to eq(subject.destination_already_exists(repo, Just.path(repo)))
       end
     end
   end

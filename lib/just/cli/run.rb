@@ -1,17 +1,18 @@
 require "main"
 
-Main {
+# rubocop:disable Metrics/BlockLength
+Main do
   mode 'setup' do
-    def run()
-      doc = <<-DOC
-To setup Just, you just need to add this line to your ~/.bash_profile or ~/.zshrc:
+    def run
+      doc = <<~DOC
+        To setup Just, you just need to add this line to your ~/.bash_profile or ~/.zshrc:
 
-. ~/.just/aliases
+        . ~/.just/aliases
 
-You should add this _before_ any of the host computer's aliases.
-Just so that that computer's aliases take precedence!
+        You should add this _before_ any of the host computer's aliases.
+        Just so that that computer's aliases take precedence!
 
-It's just that simple. Just will do the rest!
+        It's just that simple. Just will do the rest!
       DOC
 
       Just::CLI.success doc.strip
@@ -19,14 +20,16 @@ It's just that simple. Just will do the rest!
   end
 
   mode 'add' do
-    argument('repo') {
+    argument('repo') do
       required
       synopsis 'repo'
       description 'Path to dot files repository'
-    }
+    end
 
-    def run()
+    def run
       repo = params['repo'].value
+      puts "Cloning #{repo}..."
+
       result = Just::CLI::Add.new.call(repo)
       if result.success?
         Just::CLI.success "Added #{repo} successfully."
@@ -37,19 +40,21 @@ It's just that simple. Just will do the rest!
   end
 
   mode 'use' do
-    argument('repo') {
+    argument('repo') do
       synopsis 'repo'
       required
       description 'Repo to use'
-    }
+    end
 
-    argument('aliases') {
+    argument('aliases') do
       synopsis 'aliases'
-      arity -1
+      arity(-1)
       description 'Dot files to use'
-    }
+    end
 
-    def run()
+    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/MethodLength
+    def run
       repo = params['repo'].value
       aliases = params['aliases'].values
       result = Just::CLI::Use.new.call(
@@ -73,16 +78,18 @@ It's just that simple. Just will do the rest!
 
       reload_shell!
     end
+    # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/MethodLength
   end
 
   mode 'reset' do
-    def run()
+    def run
       reset
     end
   end
 
   mode 'me' do
-    def run()
+    def run
       reset
     end
   end
@@ -103,4 +110,5 @@ It's just that simple. Just will do the rest!
   def run
     help!
   end
-}
+end
+# rubocop:enable Metrics/BlockLength

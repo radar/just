@@ -3,7 +3,7 @@ require "just/cli"
 
 module Just
   def self.progress_bar
-     ProgressBar::Outputs::Tty
+    ProgressBar::Outputs::Tty
   end
 
   def self.directory

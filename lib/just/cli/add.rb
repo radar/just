@@ -17,21 +17,30 @@ module Just
 
       def ensure_destination_empty(username_and_repo)
         destination = Just.path(username_and_repo)
-        if File.exist?(destination) && !Dir.empty?(destination)
-          Failure("Destination already exists")
-        else
-          Success(username_and_repo)
-        end
-      end
+        return Success(username_and_repo) unless Dir.exist?(destination)
+        return Success(username_and_repo) if Dir.empty?(destination)
 
+        destination_already_exists(username_and_repo, destination)
+      end
 
       def clone_repository(username_and_repo)
         destination = Just.path(username_and_repo)
         Git.clone(Just.git(username_and_repo), destination)
 
+
         Success(username_and_repo)
       end
 
+      def destination_already_exists(username_and_repo, destination)
+        Failure(<<~DOC
+          Destination already exists and is not an empty directory:
+            * (#{destination})
+
+          It's likely that you've already added #{username_and_repo} using `just add`.
+          Maybe you didn't remember doing this?
+        DOC
+        )
+      end
     end
   end
 end

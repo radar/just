@@ -1,0 +1,30 @@
+AllCops:
+  TargetRubyVersion: 2.4.2
+
+Layout/IndentArray:
+  EnforcedStyle: consistent
+
+Layout/ClosingParenthesisIndentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/LambdaCall:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
