@@ -1,3 +1,4 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/just/cli'
+require 'just'
+require 'just/cli'
