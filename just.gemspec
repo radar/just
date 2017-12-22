@@ -24,8 +24,7 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
 
   spec.add_dependency "main", "~> 6.2.2"
-  spec.add_dependency "rugged", "~> 0.26.0"
-  spec.add_dependency "ruby-progressbar", "~> 1.9.0"
+  spec.add_dependency "git", "~> 1.3.0"
   spec.add_dependency "dry-transaction", "~> 0.10.2"
   spec.add_dependency "dry-monads", "~> 0.4.0"
   spec.add_dependency "rainbow", "~> 3.0.0"

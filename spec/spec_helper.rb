@@ -1,15 +1,10 @@
 require "bundler/setup"
 require "just"
 require "climate_control"
-require "ruby-progressbar/outputs/null"
 
 module Just
   def self.test_directory
     File.expand_path(__dir__)
-  end
-
-  def self.progress_bar
-     ProgressBar::Outputs::Null
   end
 
   def self.git_url
