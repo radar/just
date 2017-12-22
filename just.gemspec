@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "ruby-progressbar", "~> 1.9.0"
   spec.add_dependency "dry-transaction", "~> 0.10.2"
   spec.add_dependency "dry-monads", "~> 0.4.0"
+  spec.add_dependency "rainbow", "~> 3.0.0"
 
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "pry"

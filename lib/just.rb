@@ -1,6 +1,5 @@
 require "just/version"
-require "just/cli/add"
-require "just/cli/use"
+require "just/cli"
 
 module Just
   def self.progress_bar

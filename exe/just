@@ -2,3 +2,4 @@
 
 require 'just'
 require 'just/cli'
+require 'just/cli/run'
