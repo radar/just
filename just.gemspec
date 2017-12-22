@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+  spec.license       = "MIT"
 
   spec.add_dependency "main", "~> 6.2.2"
   spec.add_dependency "rugged", "~> 0.26.0"
