@@ -98,6 +98,8 @@ Main do
 
     private
 
+    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/MethodLength
     def list_files(result)
       repo = params['repo'].value
 
@@ -120,6 +122,8 @@ Main do
       puts
       Just::CLI.success "just use #{repo} #{files.sample}"
     end
+    # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/MethodLength
   end
 
   mode 'reset' do

@@ -12,7 +12,7 @@ module Just
         no_such_directory: <<~DOC
           That directory you specified does not exist.
         DOC
-      }
+      }.freeze
 
       step :check_if_path_exists
       step :list
@@ -23,8 +23,8 @@ module Just
       end
 
       def list(repo)
-        files = (Dir.entries(path(repo))).reject { |f| /\A\./.match(f) }
-        Success(files)
+        files = Dir.entries(path(repo)).reject { |f| f.start_with?(".") }
+        Success(files.sort)
       end
     end
   end

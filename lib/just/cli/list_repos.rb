@@ -1,6 +1,7 @@
 require 'dry/transaction'
 require 'pathname'
 
+# rubocop:disable Layout/EmptyLinesAroundArguments
 module Just
   module CLI
     class ListRepos
@@ -11,7 +12,7 @@ module Just
 
           You can add one by doing `just add <username>/<repo>`.
         DOC
-      }
+      }.freeze
 
       step :ensure_at_least_one_repo
       step :list
@@ -35,3 +36,4 @@ module Just
     end
   end
 end
+# rubocop:enable Layout/EmptyLinesAroundArguments
